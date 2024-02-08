@@ -28,7 +28,7 @@ export class CartService {
 
   updateCart(username: string, updateCartRequest: UpdateCartRequest): Observable<any> {
     const url = `${this.baseUrl}/${username}`;
-    const token = this.authService.getToken(); // Get the token from AuthService
+    const token = this.authService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.post<any>(url, updateCartRequest, { headers }).pipe(

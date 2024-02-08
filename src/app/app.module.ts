@@ -5,10 +5,6 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {CartComponent} from './cart/cart/cart.component';
-import {WeaponListComponent} from './weapon/weapon-list/weapon-list.component';
-import {WeaponDetailComponent} from './weapon/weapon-detail/weapon-detail.component';
-import {ProfileComponent} from './user/profile/profile.component';
-import {UpdateComponent} from './user/update/update.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {NavbarComponent} from './navbar/navbar.component';
@@ -40,10 +36,6 @@ import {MatTableModule} from "@angular/material/table";
     LoginComponent,
     RegisterComponent,
     CartComponent,
-    WeaponListComponent,
-    WeaponDetailComponent,
-    ProfileComponent,
-    UpdateComponent,
     NavbarComponent,
     MainPageComponent,
   ],
