@@ -1,28 +1,32 @@
-.row {
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 93%;
+  background-color: #f2f2f2;
+}
+
+.mat-card-container {
+  width: 80%;
+  max-height: calc(100% - 100px);
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
 }
 
-.col {
-  width: 25%;
-  padding: 0 15px;
-  margin-bottom: 20px;
+.card-item mat-card {
+  background-color: #4c7fff;
 }
-
-.weapon-card {
-  border: 1px solid #ccc;
-  padding: 15px;
+.mat-card-content{
+  background-color: #4c7fff
 }
-
-.pagination {
-  margin-top: 20px;
-}
-
-.pagination button {
-  margin-right: 5px;
-  cursor: pointer;
-}
-
-.pagination button.active {
-  font-weight: bold;
+.pagination-container {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  padding-bottom: 20px;
 }

@@ -3,17 +3,19 @@
     <div class="col-md-6 offset-md-3 mt-5">
       <h2>Login</h2>
       <form (ngSubmit)="login()">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username" required>
+        <mat-form-field class="form-group">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" id="username" name="username" [(ngModel)]="username" required>
+        </mat-form-field>
+        <mat-form-field class="form-group">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" id="password" name="password" [(ngModel)]="password" required>
+        </mat-form-field>
+        <div class="button-container">
+          <button mat-raised-button class="link-button" type="submit">Login</button>
+          <button mat-raised-button ="link-button" type="button" (click)="navigateToRegister()">Register</button>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required>
-        </div>
-        <button (click)="navigateToRegister()">Register</button>
-        <button type="submit" class="btn btn-primary">Login</button>
-        <p class="text-danger mt-2" *ngIf="errorMessage">{{ errorMessage }}</p>
+        <p class="error-msg mt-2" *ngIf="errorMessage">{{ errorMessage }}</p>
       </form>
     </div>
   </div>

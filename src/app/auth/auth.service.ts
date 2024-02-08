@@ -20,7 +20,6 @@ export class AuthService {
         tap(response => {
           this.storeToken(response.token);
           this.loggedInUserName = username;
-          console.log('Token stored: ', response.token);
         })
       );
   }
@@ -56,7 +55,6 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    debugger
     const token = this.getToken();
     var isLogged = false;
     if (token !== 'auth-token' && token !== null){

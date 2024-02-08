@@ -1,6 +1,12 @@
 import {Component} from '@angular/core';
 import {WeaponService} from "../weapon/weapon.service";
 import {Weapon} from "../weapon/weapon.model";
+import {PageEvent} from "@angular/material/paginator";
+import {ItemRequest} from "../item-request";
+import {CartService} from "../cart/cart.service";
+import {UpdateCartRequest} from "../update-cart-request";
+import {AuthService} from "../auth/auth.service";
+import {catchError} from "rxjs";
 
 @Component({
   selector: 'app-main-page',
@@ -11,8 +17,14 @@ export class MainPageComponent {
   weapons: Weapon[] = [];
   currentPage = 1;
   itemsPerPage = 4;
+  totalItems = 0;
+  count = 1;
 
-  constructor(private weaponService: WeaponService) { }
+  constructor(
+    private weaponService: WeaponService,
+    private cartService: CartService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.loadWeapons();
@@ -21,6 +33,7 @@ export class MainPageComponent {
   loadWeapons(): void {
     this.weaponService.getAllWeapons().subscribe(weapons => {
       this.weapons = weapons;
+      this.totalItems = this.weapons.length; // Update totalItems here
     });
   }
 
@@ -30,12 +43,28 @@ export class MainPageComponent {
     return this.weapons.slice(startIndex, endIndex);
   }
 
-  get pages(): number[] {
-    const numberOfPages = Math.ceil(this.weapons.length / this.itemsPerPage);
-    return Array(numberOfPages).fill(0).map((_, i) => i + 1);
+  onPageChange(pageEvent: PageEvent): void {
+    this.currentPage = pageEvent.pageIndex + 1;
   }
 
-  onPageChange(pageNumber: number): void {
-    this.currentPage = pageNumber;
+  addToCart(weapon: Weapon, count: number): void {
+    const itemRequest = new ItemRequest(weapon.id, weapon.price, count);
+    const username = this.authService.getLoggedInUserName() || 'defaultUsername';
+    const updateCartRequest: UpdateCartRequest = { requestedItems: [itemRequest] };
+
+    this.cartService.updateCart(username, updateCartRequest)
+      .pipe(
+        catchError(error => {
+          console.error('Error updating cart:', error);
+          throw error;
+        })
+      )
+      .subscribe(cart => {
+        console.log('Cart updated successfully:', cart);
+      });
   }
 }
+
+
+
+
