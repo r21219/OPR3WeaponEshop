@@ -1,17 +1,53 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { CartComponent } from './cart/cart/cart.component';
+import { WeaponListComponent } from './weapon/weapon-list/weapon-list.component';
+import { WeaponDetailComponent } from './weapon/weapon-detail/weapon-detail.component';
+import { TagListComponent } from './tag/tag-list/tag-list.component';
+import { TagDetailComponent } from './tag/tag-detail/tag-detail.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { UpdateComponent } from './user/update/update.component';
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import { NavbarComponent } from './navbar/navbar.component';
+import { MainPageComponent } from './main-page/main-page.component';
+//TODO
+// implement status in the BE for cart
+// implement a different model for displaying items and also give the ids away so you can use them
+// get this to git
+// make count actually work
+// create an inner cart that will manage the items inside basically when you add to cart first the item gets added to the inner cart then updates the db one
+// cart from db should have an id (orderLines don't matter)
+// make login have error checks
+// set the min to 1 for count
+// when clicking the user you access the user menu where you can self delete or update your name
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    CartComponent,
+    WeaponListComponent,
+    WeaponDetailComponent,
+    TagListComponent,
+    TagDetailComponent,
+    ProfileComponent,
+    UpdateComponent,
+    NavbarComponent,
+    MainPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
